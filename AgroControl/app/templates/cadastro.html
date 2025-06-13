@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
+    <title>Cadastro-AgroControl</title>
+</head>
+<body>
+    
+    <form action="{% url 'cadastro' %}" method="POST">
+        {% csrf_token %}
+        <fieldset>
+        <legend>Cadastro - AgroControl</legend>
+        <p>
+            <label for="id_nome">Nome: </label>
+                <input type="text" id="id_nome"
+                name="nome" minlength="4" maxlength="12" placeholder="digite seu nome">
+        </p>
+        <p>
+            <label for="senha">Cadastro: </label>
+            <input type="text" id="cadastro" name="cadastro" placeholder="digite seu cadastro" required>
+        </p>
+        <p>
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" placeholder="digite seu e-mail"required>
+        </p>
+        <p>
+            <label for="senha">Senha: </label>
+            <input type="password" id="senha" name="senha" placeholder="digite sua senha" required>
+        </p>
+        <p>
+            <label for="ConfirmeSenha">Confirme sua senha: </label>
+            <input type="password" id="confirma_senha" name="confirma_senha" placeholder="confirme sua senha" required>
+        </p>
+        <p>
+            <input type="submit" value="Cadastrar">
+        </p>
+        <p>Já tem uma conta? <a href="{% url 'login' %}">Acessar</a></p>
+        </fieldset>
+    </form>
+</body>
+</html>
