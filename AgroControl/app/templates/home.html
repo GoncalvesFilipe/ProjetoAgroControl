@@ -8,7 +8,16 @@
     <title>Página Inicial</title>
 </head>
 <body>
-    <h1>Bem-vindo ao site!</h1>
+    <header>
+        <nav>        
+        <h1>AgroControl</h1>
+        <ul>
+            <li><a href="#Login">Login</a></li>
+            <li><a href="#cadastro">Cadastro</a></li>
+        </ul>
+
+        </nav>
+    </header>
 
     {% if user.is_authenticated %}
         <p>Olá, {{ user.nome_completo|default:user.username }}!</p>
