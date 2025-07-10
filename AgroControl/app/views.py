@@ -1,21 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Animal, Produto, Movimento
+from .models import Produto, Movimento, Venda, ItemVenda, Funcionario
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from .forms import VendaForm, ItemVendaFormSet
 
 User = get_user_model()
 
 # Create your views here.
 def index(request):
     return render(request, 'home.html')
-
-def lista_animais(request):
-    animais = Animal.objects.all()
-    return render(request, 'lista_animais.html', {'animais': animais})
-
-def detalhe_animal(request, pk):
-    animal = get_object_or_404(Animal, pk=pk)
-    return render(request, 'detalhe_animal.html', {'animal': animal})
 
 def lista_produtos(request):
     produtos = Produto.objects.all()
@@ -53,4 +46,26 @@ def cadastro(request):
         messages.success(request, 'Usuário criado com sucesso!')
         return redirect('login')  # redireciona para página de login
 
-    return render(request, 'cadastro.html')
+def lista_vendas(request):
+    vendas = Venda.objects.all()
+    return render(request, 'vendas/lista_vendas.html', {'vendas': vendas})
+
+def detalhe_venda(request, venda_id):
+    venda = get_object_or_404(Venda, pk=venda_id)
+    return render(request, 'vendas/detalhe_venda.html', {'venda': venda})
+
+def nova_venda(request):
+    if request.method == 'POST':
+        form = VendaForm(request.POST)
+        formset = ItemVendaFormSet(request.POST)
+        if form.is_valid() and formset.is_valid():
+            venda = form.save()
+            itens = formset.save(commit=False)
+            for item in itens:
+                item.venda = venda
+                item.save()
+            return redirect('detalhe_venda', venda_id=venda.id)
+    else:
+        form = VendaForm()
+        formset = ItemVendaFormSet()
+    return render(request, 'vendas/nova_venda.html', {'form': form, 'formset': formset})

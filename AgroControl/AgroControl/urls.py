@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from app.views import index
 from app import views 
 from django.contrib.auth import views as auth_views
@@ -27,13 +27,14 @@ def redirect_inicio(request):
 urlpatterns = [
     path('admin/', admin.site.urls),
      path('', views.index, name='index'),
-    path('animais/', views.lista_animais, name='lista_animais'),
-    path('animais/<int:pk>/', views.detalhe_animal, name='detalhe_animal'),
     path('produtos/', views.lista_produtos, name='lista_produtos'),
     path('movimentos/', views.lista_movimentos, name='lista_movimentos'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('cadastro/', views.cadastro, name='cadastro'),
+    path('vendas/', views.lista_vendas, name='lista_vendas'),
+    path('vendas/nova/', views.nova_venda, name='nova_venda'),
+    path('vendas/<int:venda_id>/', views.detalhe_venda, name='detalhe_venda'),
     path('inicio/', views.index, name='inicio'),
     path('início/', redirect_inicio),  # redireciona /início/ para /inicio/
 ]

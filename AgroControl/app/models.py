@@ -14,31 +14,20 @@ class Propriedade(models.Model):
     telefone = models.CharField(max_length=15)
     email = models.CharField(max_length=25)
     
-    def _str_(self):
+    def __str__(self):
         return self.razao_social
     
-class Animal(models.Model):
-    propriedade = models.ForeignKey(Propriedade, on_delete=models.PROTECT, related_name='animais')
-    especie = models.CharField(max_length=30)
-    raca = models.CharField(max_length=30)
-    produto_aplicado = models.CharField(max_length=300)
-    data_nascimento = models.DateField(auto_now=True)
-    data_cadastro = models.DateField(auto_now=True)
-    data_modificacao = models.DateField(auto_now=True)
-    observacoes = models.TextField()
-    
-    def _str_(self):
-        return f"{self.especie} - {self.raca}"
-    
 class Produto(models.Model):
+    nome = models.CharField(max_length=100, default='Sem nome')
     descricao = models.CharField(max_length=100)
+    preco = models.DecimalField("Preço", max_digits=10, decimal_places=2, default=0.00)
     quant_estoque = models.IntegerField()
     setor_destinado = models.CharField(max_length=300)
     data_entrada = models.DateField(auto_now=True)
     data_saida = models.DateField(auto_now=True)
     data_modificacao = models.DateField(auto_now=True)
     
-    def _str_(self):
+    def __str__(self):
         return self.descricao
 
 class Movimento(models.Model):
@@ -47,5 +36,42 @@ class Movimento(models.Model):
     data_saida = models.DateField()
     quantidade = models.IntegerField()
     
-    def _str_(self):
+    def __str__(self):
         return f"{self.produto.descricao} - {self.quantidade}"
+    
+class Funcionario(models.Model):
+    nome_funcionario = models.CharField(max_length=100)
+    cpf = models.CharField(max_length=14)
+    email = models.EmailField()
+    telefone = models.CharField(max_length=15)
+    cargo = models.CharField(max_length=50)
+    data_admissao = models.DateField()
+
+    def __str__(self):
+        return self.nome_funcionario
+
+class Venda(models.Model):
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE)
+    funcionario = models.ForeignKey(Funcionario, on_delete=models.SET_NULL, null=True)
+    quantidade = models.PositiveIntegerField()
+    preco_total = models.DecimalField(max_digits=10, decimal_places=2)
+    data_venda = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.produto.nome} - {self.quantidade} und"
+    
+    def total_venda(self):
+        return sum(item.subtotal() for item in self.itens.all())
+
+    
+class ItemVenda(models.Model):
+    venda = models.ForeignKey('Venda', related_name='itens', on_delete=models.CASCADE)
+    produto = models.ForeignKey('Produto', on_delete=models.CASCADE)
+    quantidade = models.PositiveIntegerField()
+    preco_unitario = models.DecimalField(max_digits=10, decimal_places=2)
+
+    def subtotal(self):
+        return self.quantidade * self.preco_unitario
+
+    def __str__(self):
+        return f"{self.quantidade}x {self.produto.nome} - R${self.subtotal():.2f}"

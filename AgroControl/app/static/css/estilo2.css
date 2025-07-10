@@ -1,0 +1,63 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;     
+    color: #333;
+  }
+
+  header {   
+    background-image: url('/static/img/img.jpg');
+    background-position: center;
+    color: white;
+    padding-bottom: 40px 0;
+    height: 200px;
+  }
+
+    nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+  }
+
+  nav h1 {
+    font-size: 24px;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+
+  nav a {
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  /* Botões gerais */
+  button.btn-entrar, button.btn-cadastrar {
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  button.btn-entrar {
+    background-color: #023c06;
+  }
+
+  button.btn-cadastrar {
+    background-color: #023c06;
+  }
+
+  

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - AgroControl</title>
+    <link rel="stylesheet" href="{% static 'css/estiloteste.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Login AgroControl</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <label for="username">Usuário:</label>
+                <input type="text" name="username" id="username" required>
+
+                <label for="password">Senha:</label>
+                <input type="password" name="password" id="password" required>
+
+                <button type="submit">Acessar</button>
+
+                {% if form.errors %}
+                    <p class="error">Usuário ou senha inválidos.</p>
+                {% endif %}
+            </form>
+            <p class="register-link">Não tem conta? <a href="{% url 'cadastro' %}">Cadastre-se</a></p>
+        </div>
+    </div>
+</body>
+</html>
