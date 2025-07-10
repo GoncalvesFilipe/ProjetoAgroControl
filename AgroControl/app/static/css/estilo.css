@@ -1,6 +1,6 @@
 body {
     margin: 0;font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)),
+    background: linear-gradient(rgba(255,255,255,0.8)),
                 url("https://i.pinimg.com/originals/c9/03/69/c90369ff24a8c437faed84be2d16270a.jpg");
     background-size: cover;
     background-position: center;
@@ -13,23 +13,21 @@ form {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("https://static.vecteezy.com/ti/vetor-gratis/p1/48681529-verde-fundo-arte-papel-de-parede-download-vetor.jpg");
-    
     background-repeat: no-repeat;
     background-size: cover;
 }
 
 fieldset {
-    background-color: rgb(221, 233, 210);
+    background-color: whitesmoke;
     border-radius: 0.2em;
-    border-color: rgb(6, 170, 52);
+    border-color: rgb(4, 142, 71);
     padding: 2.2em;
     box-shadow: 2px 2px 5px rgb(66, 192, 16);
 }
 
 legend {
     font-weight: bold;
-    background-color: rgb(11, 172, 11);
+    background-color: rgb(4, 142, 71);
     border-radius: 0.2em;
     font-size: 1.25em;
 }
@@ -42,4 +40,7 @@ label {
 
 input {
     height: 1.7em;
+    background-color: rgb(4, 142, 71);
+    border-radius: 0.6em;
+    border: 1px solid #999
 }

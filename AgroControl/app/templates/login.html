@@ -24,10 +24,16 @@
         <form action="{% url 'login' %}" method="POST">
         {% csrf_token %}
 
+        <header>
+            <div class="imagem"><img src="/AgroControl/app/static/img/img_agrocontrol2.png" alt="logoAgroControl"></div>
+        </header>
+
         <fieldset>
-            <legend>Login-AgroControl</legend>
+            <legend>Login AGROCONTROL</legend>
             <p>
-                <label for="id_usuario">Cadastro: </label>
+                <label for="id_usuario">
+                    Usuário: 
+                </label>
                 <input type="text" id="id_usuario"
                 name="username" minlength="4" maxlength="12" placeholder="digite seu usuário">
             </p>
