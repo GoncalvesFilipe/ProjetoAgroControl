@@ -1,45 +1,44 @@
-body {
-    margin: 0;font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)),
-                url("https://i.pinimg.com/originals/c9/03/69/c90369ff24a8c437faed84be2d16270a.jpg");
+.sidebar {
+    transition: all 0.3s ease;
+}
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+.crop-bg {
+    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3');
     background-size: cover;
     background-position: center;
-    color: #1a1a1a;
+    min-height: 200px;
+}
+.animate-pulse-slow {
+    animation: pulse 3s infinite;
+}
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
 }
 
-form {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url("https://static.vecteezy.com/ti/vetor-gratis/p1/48681529-verde-fundo-arte-papel-de-parede-download-vetor.jpg");
-    
-    background-repeat: no-repeat;
-    background-size: cover;
+.logo-img {
+    height: 4rem;
+    width: 5rem;
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
 }
 
-fieldset {
-    background-color: rgb(221, 233, 210);
-    border-radius: 0.2em;
-    border-color: rgb(6, 170, 52);
-    padding: 2.2em;
-    box-shadow: 2px 2px 5px rgb(66, 192, 16);
+.logo-img:hover {
+    transform: scale(1.1);
+}
+         
+.user-img{
+    height: 3rem;
+    width: 4rem;
+    border-radius:200%;
+    object-fit: cover
 }
 
-legend {
-    font-weight: bold;
-    background-color: rgb(11, 172, 11);
-    border-radius: 0.2em;
-    font-size: 1.25em;
-}
 
-label {
-    font-weight: bold;
-    display: block;
-    font-size: 1.13em;
-}
-
-input {
-    height: 1.7em;
-}

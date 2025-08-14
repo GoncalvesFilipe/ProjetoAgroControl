@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
     "app",
 ]
 
@@ -55,7 +56,7 @@ ROOT_URLCONF = 'AgroControl.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,7 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'America-Bahia'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -126,4 +127,10 @@ STATICFILES_DIRS = [BASE_DIR / 'app' / 'static']
 
 AUTH_USER_MODEL = 'app.Usuario'
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/adm/'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = BASE_DIR / 'media'
+
+LOGIN_URL = '/login/'

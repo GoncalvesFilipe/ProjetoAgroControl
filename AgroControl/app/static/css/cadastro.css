@@ -1,0 +1,45 @@
+* {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    header {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        background-color: #2d702d;
+        color: white;
+        text-align: center;
+        padding: 20px 10px;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        margin: 0;
+    }
+
+
+    .gradient-bg {
+        background: linear-gradient(135deg, #45a049 0%, #45a049 50%, #2d702d 100%);
+        }
+        
+    .input-error {
+        border-color: #f56565;
+        }
+    
+    
+    .error-message {
+        color: #f56565;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        }
+    
+    .success-message {
+        color: #48bb78;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+    }
+
+   
+
+    

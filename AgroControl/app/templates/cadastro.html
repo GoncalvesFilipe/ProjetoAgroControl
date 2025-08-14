@@ -1,43 +1,251 @@
 {% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/estilo.css' %}">
-    <title>Cadastro-AgroControl</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroControl - Cadastro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="{% static 'css/cadastro.css' %}">
+    
 </head>
-<body>
+<body class="min-h-screen bg-gray-100 flex items-center justify-center p-4">
+
     
     <form action="{% url 'cadastro' %}" method="POST">
+        
         {% csrf_token %}
-        <fieldset>
-        <legend>Cadastro - AgroControl</legend>
-        <p>
-            <label for="id_nome">Nome: </label>
-                <input type="text" id="id_nome"
-                name="nome" minlength="4" maxlength="12" placeholder="digite seu nome">
-        </p>
-        <p>
-            <label for="senha">Cadastro: </label>
-            <input type="text" id="cadastro" name="cadastro" placeholder="digite seu cadastro" required>
-        </p>
-        <p>
-            <label for="email">Email: </label>
-            <input type="email" id="email" name="email" placeholder="digite seu e-mail"required>
-        </p>
-        <p>
-            <label for="senha">Senha: </label>
-            <input type="password" id="senha" name="senha" placeholder="digite sua senha" required>
-        </p>
-        <p>
-            <label for="ConfirmeSenha">Confirme sua senha: </label>
-            <input type="password" id="confirma_senha" name="confirma_senha" placeholder="confirme sua senha" required>
-        </p>
-        <p>
-            <input type="submit" value="Cadastrar">
-        </p>
-        <p>Já tem uma conta? <a href="{% url 'login' %}">Acessar</a></p>
-        </fieldset>
+    <div class="w-full max-w-md">
+        
+        <div class="gradient-bg text-white rounded-t-lg p-6 shadow-lg">
+            <div class="flex items-center justify-center mb-4">
+                <i class="fas fa-tractor text-4xl mr-3"></i><img src="{% static 'img/logo.png' %}" alt="logoAgroControl" width="75px">
+                <h1 class="text-2xl font-bold">AgroControl</h1>
+            </div>
+            <p class="text-center text-white opacity-90">Sistema de Gerenciamento da Cooperativa IF Baiano</p>
+        </div>
+        
+        <div class="bg-white rounded-b-lg shadow-lg px-8 pt-6 pb-8 mb-4">
+            <h2 class="text-xl font-semibold text-gray-800 mb-6 text-center">Crie sua conta</h2>
+            
+                <div id="formSuccess" class="hidden bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                    <span class="block sm:inline">Cadastro realizado com sucesso! Redirecionando para login...</span>
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="fullName">
+                        Nome Completo <span class="text-red-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <i class="fas fa-user text-gray-400"></i>
+                        </span>
+                        <input class="shadow appearance-none border rounded w-full py-2 pl-10 pr-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-teal-500" 
+                               id="fullName" name="nome" type="text" placeholder="Digite seu nome completo">
+                    </div>
+                    <div id="fullNameError" class="error-message hidden"></div>
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        Nome de Usuário <span class="text-red-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <i class="fas fa-at text-gray-400"></i>
+                        </span>
+                        <input class="shadow appearance-none border rounded w-full py-2 pl-10 pr-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-teal-500" 
+                               id="username" name="cadastro" type="text" placeholder="Escolha um nome de usuário">
+                    </div>
+                    <div id="usernameError" class="error-message hidden"></div>
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                        E-mail <span class="text-red-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <i class="fas fa-envelope text-gray-400"></i>
+                        </span>
+                        <input class="shadow appearance-none border rounded w-full py-2 pl-10 pr-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-teal-500" 
+                               id="email" name="email"  type="email" placeholder="seu.email@exemplo.com">
+                    </div>
+                    <div id="emailError" class="error-message hidden"></div>
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        Senha <span class="text-red-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </span>
+                        <input class="shadow appearance-none border rounded w-full py-2 pl-10 pr-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-teal-500" 
+                               id="password" name="senha" type="password" placeholder="Crie uma senha segura">
+                        <button type="button" class="absolute right-3 top-2 text-gray-400 hover:text-gray-600" onclick="togglePassword('password')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div class="text-xs text-gray-500 mt-1">
+                        A senha deve conter pelo menos 8 caracteres, incluindo números e letras.
+                    </div>
+                    <div id="passwordError" class="error-message hidden"></div>
+                </div>
+                
+                <div>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="confirmPassword">
+                        Confirmar Senha <span class="text-red-500">*</span>
+                    </label>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <i class="fas fa-lock text-gray-400"></i>
+                        </span>
+                        <input class="shadow appearance-none border rounded w-full py-2 pl-10 pr-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline focus:ring-2 focus:ring-teal-500" 
+                               id="confirmPassword" name="confirma_senha" type="password" placeholder="Confirme sua senha">
+                        <button type="button" class="absolute right-3 top-2 text-gray-400 hover:text-gray-600" onclick="togglePassword('confirmPassword')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                    <div id="confirmPasswordError" class="error-message hidden"></div>
+                </div>
+                
+                <div class="flex items-center justify-between mt-6">
+                    <button class="gradient-bg hover:opacity-90 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full transition duration-300 ease-in-out transform hover:scale-105" 
+                            type="submit">
+                        <i class="fas fa-user-plus mr-2"></i> Cadastrar
+                    </button>
+                </div>
+            </form>
+            
+            <div class="text-center mt-6">
+                <p class="text-gray-600 text-sm">
+                    Já tem uma conta? 
+                    <a href="{% url 'login' %}" class="text-teal-600 hover:text-teal-800 font-semibold">Faça login</a>
+
+                </p>
+            </div>
+            
+            <div class="mt-6 border-t border-gray-200 pt-4">
+                <p class="text-xs text-gray-500 text-center">
+                    Este sistema é destinado exclusivamente para membros autorizados da cooperativa do IF Baiano.
+                    
+                </p>
+            </div>
+        </div>
+    </div>
     </form>
 </body>
+
+    <script>
+        function togglePassword(fieldId) {
+            const field = document.getElementById(fieldId);
+            const icon = field.nextElementSibling.querySelector('i');
+            
+            if (field.type === 'password') {
+                field.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                field.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+        
+        function showError(fieldId, message) {
+            const field = document.getElementById(fieldId);
+            const errorElement = document.getElementById(`${fieldId}Error`);
+            
+            field.classList.add('input-error');
+            errorElement.textContent = message;
+            errorElement.classList.remove('hidden');
+        }
+        
+        function clearError(fieldId) {
+            const field = document.getElementById(fieldId);
+            const errorElement = document.getElementById(`${fieldId}Error`);
+            
+            field.classList.remove('input-error');
+            errorElement.classList.add('hidden');
+        }
+        
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+        
+        function validatePassword(password) {
+            // At least 8 characters, 1 number, 1 letter
+            const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+            return re.test(password);
+        }
+        
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            
+            // Reset all errors
+            ['fullName', 'username', 'email', 'password', 'confirmPassword'].forEach(field => {
+                clearError(field);
+            });
+            
+            // Get values
+            const fullName = document.getElementById('fullName').value.trim();
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            
+            let isValid = true;
+            
+            // Validate full name
+            if (!fullName) {
+                showError('fullName', 'Por favor, insira seu nome completo.');
+                isValid = false;
+            } else if (fullName.length < 3) {
+                showError('fullName', 'O nome deve ter pelo menos 3 caracteres.');
+                isValid = false;
+            }
+            
+            // Validate username
+            if (!username) {
+                showError('username', 'Por favor, escolha um nome de usuário.');
+                isValid = false;
+            } else if (username.length < 4) {
+                showError('username', 'O nome de usuário deve ter pelo menos 4 caracteres.');
+                isValid = false;
+            }
+            
+            // Validate email
+            if (!email) {
+                showError('email', 'Por favor, insira seu e-mail institucional.');
+                isValid = false;
+            } else if (!validateEmail(email)) {
+                showError('email', 'Por favor, insira um e-mail válido.');
+                isValid = false;
+            }
+            
+            // Validate password
+            if (!password) {
+                showError('password', 'Por favor, crie uma senha.');
+                isValid = false;
+            } else if (!validatePassword(password)) {
+                showError('password', 'A senha deve ter pelo menos 8 caracteres, incluindo números e letras.');
+                isValid = false;
+            }
+            
+            // Validate confirm password
+            if (!confirmPassword) {
+                showError('confirmPassword', 'Por favor, confirme sua senha.');
+                isValid = false;
+            } else if (password !== confirmPassword) {
+                showError('confirmPassword', 'As senhas não coincidem.');
+                isValid = false;
+            }
+            
+            // If all valid, simulate successful registration
+            if (isValid) {
+                document.getElementById('formSuccess').classList.remove('hidden');
+            }
+        });
+    </script>
 </html>

@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Animal, Produto, Movimento
+from .models import Produto, Movimento
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 User = get_user_model()
 
@@ -9,17 +10,14 @@ User = get_user_model()
 def index(request):
     return render(request, 'home.html')
 
-def lista_animais(request):
-    animais = Animal.objects.all()
-    return render(request, 'lista_animais.html', {'animais': animais})
-
-def detalhe_animal(request, pk):
-    animal = get_object_or_404(Animal, pk=pk)
-    return render(request, 'detalhe_animal.html', {'animal': animal})
-
 def lista_produtos(request):
     produtos = Produto.objects.all()
-    return render(request, 'lista_produtos.html', {'produtos': produtos})
+    return render(request, 'catalogo.html', {'produtos': produtos})
+
+@login_required
+def produtos_funcionario(request):
+    produtos = Produto.objects.all()
+    return render(request, 'produtos_funcionario.html', {'produtos': produtos})
 
 def lista_movimentos(request):
     movimentos = Movimento.objects.all()
@@ -47,10 +45,13 @@ def cadastro(request):
             username=cadastro_usuario,  # ou outro identificador único
             email=email,
             password=senha,
-            nome=nome
+            first_name=nome
         )
 
         messages.success(request, 'Usuário criado com sucesso!')
         return redirect('login')  # redireciona para página de login
 
     return render(request, 'cadastro.html')
+
+def adm(request):
+    return render(request,'adm.html')

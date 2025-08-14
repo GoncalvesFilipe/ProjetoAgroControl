@@ -1,0 +1,19 @@
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.status-available {
+  background-color: #dcfce7;
+  color: #2d702d;
+}
+
+.status-low {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.status-critical {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
