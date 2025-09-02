@@ -1,0 +1,57 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Produtos - AgroControl</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+
+<!-- Link de navegação (opcional) -->
+<div class="mb-6">
+  <a href="{% url 'produtos_funcionario' %}" class="text-green-700 font-semibold hover:underline">
+    Voltar para Produtos do Funcionário
+  </a>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+  {% for p in produtos %}
+    {% if p.quantidade == 0 %}
+      {% with status="Crítico" status_class="bg-red-500 text-white" %}
+    {% elif p.quantidade <= p.minimo_estoque %}
+      {% with status="Baixo Estoque" status_class="bg-yellow-500 text-white" %}
+    {% else %}
+      {% with status="Disponível" status_class="bg-green-500 text-white" %}
+    {% endif %}
+
+    <div class="card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition duration-300">
+      <div class="relative">
+        <img src="{{ p.imagem.url }}" alt="{{ p.nome }}" class="w-full h-48 object-cover">
+        <span class="absolute top-2 right-2 text-xs px-2 py-1 rounded-full {{ status_class }}">
+          {{ status }}
+        </span>
+      </div>
+      <div class="p-4">
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="text-xl font-semibold text-green-800">{{ p.nome }}</h3>
+          <span class="text-xs text-gray-500">{{ p.categoria }}</span>
+        </div>
+        <p class="text-gray-600 text-sm mb-3 line-clamp-2">{{ p.descricao }}</p>
+
+        <div class="grid grid-cols-2 gap-3 mb-3 text-xs text-gray-700">
+          <p><strong>Estoque Atual:</strong> {{ p.quantidade }} {{ p.unidade }}</p>
+          <p><strong>Estoque Mínimo:</strong> {{ p.minimo_estoque|default:'N/D' }} {{ p.unidade }}</p>
+          <p><strong>Preço:</strong> R$ {{ p.preco|floatformat:2 }}</p>
+          <p><strong>Validade:</strong> {{ p.validade|date:"d/m/Y" }}</p>
+        </div>
+      </div>
+    </div>
+
+    {% endwith %}
+  {% endfor %}
+</div>
+
+</body>
+</html>

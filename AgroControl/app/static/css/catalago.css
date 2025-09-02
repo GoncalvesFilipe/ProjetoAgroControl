@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8fafc;
+}
+        
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+        
+.header-bg {
+    background: linear-gradient(135deg, #166534 0%, #14532d 100%);
+}
+        
+.product-image {
+    height: 180px;
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+        
+.product-card:hover .product-image {
+    transform: scale(1.03);
+}

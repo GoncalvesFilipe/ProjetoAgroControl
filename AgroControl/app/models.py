@@ -23,9 +23,8 @@ class Produto(models.Model):
     preco = models.DecimalField("Preço", max_digits=10, decimal_places=2, default=0.00)
     quant_estoque = models.IntegerField()
     setor_destinado = models.CharField(max_length=300)
-    data_entrada = models.DateField(auto_now=True)
-    data_saida = models.DateField(auto_now=True)
-    data_modificacao = models.DateField(auto_now=True)
+    imagem = models.ImageField(upload_to='produtos/', blank=True, null=True)
+    data_modificacao = models.DateTimeField(auto_now=True)
     
     def __str__(self):
         return self.descricao
@@ -39,6 +38,7 @@ class Movimento(models.Model):
     def __str__(self):
         return f"{self.produto.descricao} - {self.quantidade}"
     
+<<<<<<< HEAD
 class Funcionario(models.Model):
     nome_funcionario = models.CharField(max_length=100)
     cpf = models.CharField(max_length=14)
@@ -75,3 +75,29 @@ class ItemVenda(models.Model):
 
     def __str__(self):
         return f"{self.quantidade}x {self.produto.nome} - R${self.subtotal():.2f}"
+=======
+class Setor(models.Model):
+    nome = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nome
+    
+class Venda(models.Model):
+    data_venda = models.DateField(auto_now_add=True)
+    produto = models.ForeignKey(Produto, on_delete=models.PROTECT, related_name='vendas')
+    subtotal = models.DecimalField(max_digits=10, decimal_places=2)
+    quantidade_vendida = models.PositiveIntegerField()
+
+    def __str__(self):
+        return f"{self.produto.descricao} - {self.data_venda}"
+
+
+class Entrada(models.Model):
+    data_entrada = models.DateField(auto_now_add=True)
+    produto = models.ForeignKey(Produto, on_delete=models.PROTECT, related_name='entradas')
+    quantidade = models.PositiveIntegerField()
+    setor_origem = models.ForeignKey(Setor, on_delete=models.PROTECT, related_name='entradas')
+
+    def __str__(self):
+        return f"{self.produto.descricao} - Entrada: {self.quantidade}"
+>>>>>>> b1ad60b9e8376bb34ce4018f0b06bdcc2d4ed0d4

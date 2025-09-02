@@ -17,7 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from app.views import index
+<<<<<<< HEAD
 from app import views 
+=======
+from app import views
+from django.conf import settings
+from django.conf.urls.static import static
+>>>>>>> b1ad60b9e8376bb34ce4018f0b06bdcc2d4ed0d4
 from django.contrib.auth import views as auth_views
 from django.shortcuts import redirect
 
@@ -26,15 +32,25 @@ def redirect_inicio(request):
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
      path('', views.index, name='index'),
+=======
+    path('', views.index, name='index'),
+    path('adm/', views.adm,name='adm'),
+>>>>>>> b1ad60b9e8376bb34ce4018f0b06bdcc2d4ed0d4
     path('produtos/', views.lista_produtos, name='lista_produtos'),
     path('movimentos/', views.lista_movimentos, name='lista_movimentos'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('cadastro/', views.cadastro, name='cadastro'),
+<<<<<<< HEAD
     path('vendas/', views.lista_vendas, name='lista_vendas'),
     path('vendas/nova/', views.nova_venda, name='nova_venda'),
     path('vendas/<int:venda_id>/', views.detalhe_venda, name='detalhe_venda'),
     path('inicio/', views.index, name='inicio'),
     path('início/', redirect_inicio),  # redireciona /início/ para /inicio/
 ]
+=======
+    path('funcionario/produtos/', views.produtos_funcionario, name='produtos_funcionario'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+>>>>>>> b1ad60b9e8376bb34ce4018f0b06bdcc2d4ed0d4

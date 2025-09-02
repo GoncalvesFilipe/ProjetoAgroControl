@@ -1,0 +1,256 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  display: flex;
+  min-height: 100vh;
+}
+
+.menu-lateral {
+  width: 220px;
+  background-color: #2d702d;
+  color: white;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: -220px;
+  height: 100%;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  flex-shrink: 0;
+}
+
+.menu-lateral.ativo {
+  left: 0;
+}
+
+.menu-lateral h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
+.menu-lateral a {
+  display: block;
+  color: white;
+  text-decoration: none;
+  margin-bottom: 15px;
+  transition: background 0.3s;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.menu-lateral a:hover {
+  background-color: #1e5135;
+}
+
+
+.conteudo-principal {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin-left: 0;
+  transition: margin-left 0.3s ease;
+  width: 100%;
+}
+
+.conteudo-principal.deslocado {
+  margin-left: 220px;
+
+}
+
+
+header {
+  background-color: #2d702d;
+  color: white;
+  padding: 1em;
+  text-align: center;
+  position: relative;
+}
+
+
+.botao-menu {
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  font-size: 24px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+nav {
+  background-color: #276749;
+  padding: 0.5em 1em;
+  color: white;
+  display: flex;
+  align-items: center;
+}
+
+.barra-links {
+  display: flex;
+  gap: 20px;
+}
+
+.barra-links a,
+.menu-dropdown>button {
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 0.5em 0.8em;
+  transition: background 0.3s;
+}
+
+.barra-links a:hover,
+.menu-dropdown:hover>button {
+  background-color: #2d702d;
+  border-radius: 4px;
+}
+
+.menu-dropdown {
+  position: relative;
+}
+
+.submenu {
+  display: none;
+  position: absolute;
+  background-color: #2d702d;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  top: 100%;
+}
+
+.submenu a {
+  display: block;
+  padding: 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.submenu a:hover {
+  background-color: #23553e;
+}
+
+.menu-dropdown:hover .submenu {
+  display: block;
+}
+
+main {
+  padding: 2em;
+  flex: 1;
+}
+
+.caixa-informacao {
+  background: white;
+  padding: 1em;
+  margin: 1em 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.tabela-usuarios {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tabela-usuarios th,
+.tabela-usuarios td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.tabela-usuarios th {
+  background-color: #eee;
+}
+
+footer {
+  background-color: #2d702d;
+  color: white;
+  text-align: center;
+  padding: 1em;
+}
+
+.grade-cartoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1em;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #374151;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  transition: border-color 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.form-error {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: none;
+}
+
+.input-has-error {
+  border-color: #ef4444;
+}
+
+.info-box {
+  background-color: #f0f9ff;
+  border-left: 4px solid #38bdf8;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  margin-top: 0.5rem;
+}
+
+.AgroControl {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.imagem {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+}
+
+h1 {
+  margin: 0;
+  font-size: 1rem;
+}

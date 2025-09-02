@@ -1,0 +1,338 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>AgroGestão - Cooperativa Agrícola</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{% static 'css\estilo.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="sidebar bg-green-800 text-white w-64 md:w-20 lg:w-64 overflow-y-auto fixed h-full transition-all duration-300 z-10">
+        <div class="p-4 flex items-center justify-between">
+            <img src="{% static 'img/logo.png' %}" alt="Logo" class="logo-img">
+            <span class="text-xl font-bold hidden md:block lg:block">AgroControl</span>
+                                
+            <button id="sidebarToggle" class="md:hidden lg:hidden text-white">
+                    <i class="fas fa-bars"></i>
+            </button>
+
+        </div>
+            <nav class="mt-6">
+                <div class="px-4">
+                    <div class="py-2 text-sm uppercase text-green-200 font-semibold hidden md:hidden lg:block">Menu Principal</div>
+                    <a href="#" class="block py-3 px-4 rounded-lg bg-green-700 text-white mb-2">
+                        <i class="fas fa-tachometer-alt mr-3"></i>
+                        <span class="hidden md:hidden lg:inline">Dashboard</span>
+                    </a>
+                    <a href="#" class="block py-3 px-4 rounded-lg hover:bg-green-700 text-white mb-2">
+                        <i class="fas fa-boxes mr-3"></i>
+                        <span class="hidden md:hidden lg:inline">Insumos</span>
+                    </a>
+                    <a href="#" class="block py-3 px-4 rounded-lg hover:bg-green-700 text-white mb-2">
+                        <i class="fas fa-tasks mr-3"></i>
+                        <span class="hidden md:hidden lg:inline">Tarefas</span>
+                    
+                    </a>
+                    <a href="#" class="block py-3 px-4 rounded-lg hover:bg-green-700 text-white mb-2">
+                        <i class="fas fa-store mr-3"></i>
+                        <span class="hidden md:hidden lg:inline">Catálogo</span>
+                     </a>
+                     
+
+                </div>
+                <div class="px-4 mt-8">
+                    
+                    <a href="#" class="block py-3 px-4 rounded-lg hover:bg-green-700 text-white mb-2">
+                        <i class="fas fa-cog mr-3"></i>
+                        <span class="hidden md:hidden lg:inline">Configurações</span>
+                    </a>
+                    <a href="#" class="block py-3 px-4 rounded-lg hover:bg-green-700 text-white mb-2">
+                        <i class="fas fa-sign-out-alt mr-3"></i>
+                        <span class="hidden md:hidden lg:inline">Sair</span>
+                    </a>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 overflow-auto ml-0 md:ml-20 lg:ml-64 transition-all duration-300">
+            <!-- Top Navigation -->
+            <header class="bg-white shadow-sm py-4 px-6 flex items-center justify-between">
+                <h1 class="text-2xl font-bold text-gray-800">Dashboard</h1>
+                <div class="flex items-center space-x-4">
+                    <div class="relative">
+                        <button class="text-gray-600 hover:text-gray-900">
+                            <i class="fas fa-bell text-xl"></i>
+                            <span class="absolute top-0 right-0 h-2 w-2 rounded-full bg-red-500"></span>
+                        </button>
+                    </div>
+                    <div class="flex items-center">
+                        <img src="{% static 'img\user.png' %}" alt="User" class="user-img">
+                        <span class="ml-2 font-medium hidden md:block">Bem-vindo!</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main Content Area -->
+            <main class="p-6">
+                <!-- Welcome Banner -->
+                <div class="crop-bg rounded-xl p-6 text-white mb-8">
+                    <img scr="{% static 'img/fotocomecar.jpg' %} class="fotocomecarjpg-img"> 
+                    
+                    <h2 class="text-2xl font-bold mb-2">Sistema de Gestão da Cooperativa IF Baiano</h2>
+                    <p class="mb-4">Gerenciamento de forma simples e eficiente.</p>
+                </div>
+                
+
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="dashboard-card bg-white rounded-xl shadow p-6 transition">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-green-100 text-green-800 mr-4">
+                                <i class="fas fa-box-open text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Insumos em Estoque</p>
+                                <h3 class="text-2xl font-bold">1,248</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card bg-white rounded-xl shadow p-6 transition">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-blue-100 text-blue-800 mr-4">
+                                <i class="fas fa-tasks text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Tarefas Pendentes</p>
+                                <h3 class="text-2xl font-bold">24</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-card bg-white rounded-xl shadow p-6 transition">
+                        <div class="flex items-center">
+                            <div class="p-3 rounded-full bg-purple-100 text-purple-800 mr-4">
+                                <i class="fas fa-store text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="text-gray-500">Produtos Disponíveis</p>
+                                <h3 class="text-2xl font-bold">86</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Activity and Tasks -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <!-- Field Management Explanation -->
+                    <div class="bg-white rounded-xl shadow p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold text-gray-800">Gestão Eficiente do Campo</h2>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="p-2 rounded-full bg-green-100 text-green-800 mr-3">
+                                    <i class="fas fa-tractor"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Otimização de Recursos</p>
+                                    <p class="text-sm text-gray-500">Tenha total controle das atividades agrícolas com tecnologia intuitiva. Gerencie operações com dados organizados em tempo real, reduzindo falhas e aumentando sua produtividade.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="p-2 rounded-full bg-blue-100 text-blue-800 mr-3">
+                                    <i class="fas fa-store"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Catálogo da Cooperativa</p>
+                                    <p class="text-sm text-gray-500">Divulgue e gerencie seus produtos diretamente na plataforma. Defina preços, controle a disponibilidade. Tudo de forma simples, organizada e com mais autonomia para o produtor.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="p-2 rounded-full bg-purple-100 text-purple-800 mr-3">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                                <div>
+                                    <p class="font-medium">Planejamento Estratégico</p>
+                                    <p class="text-sm text-gray-500">Monitore e controle com precisão o uso de insumos. Reduza desperdícios, mantenha o estoque atualizado e garanta uma gestão inteligente da sua propriedade.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Tasks -->
+                    <div class="bg-white rounded-xl shadow p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold text-gray-800">Entradas e Saídas do Estoque</h2>
+                            <a href="#" class="text-green-600 hover:text-green-800 text-sm">Ver histórico</a>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start justify-between p-3 rounded-lg bg-green-50">
+                                <div class="flex items-start">
+                                    <div class="p-2 rounded-full bg-green-100 text-green-800 mr-3">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Adubo NPK 10-10-10</p>
+                                        <p class="text-sm text-gray-500">Entrada de 50kg • 15/06/2023 09:30</p>
+                                    </div>
+                                </div>
+                                <span class="text-green-600 font-medium">+50kg</span>
+                            </div>
+                            <div class="flex items-start justify-between p-3 rounded-lg bg-red-50">
+                                <div class="flex items-start">
+                                    <div class="p-2 rounded-full bg-red-100 text-red-800 mr-3">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Herbicida Glifosato</p>
+                                        <p class="text-sm text-gray-500">Saída de 5L • 14/06/2023 14:15</p>
+                                    </div>
+                                </div>
+                                <span class="text-red-600 font-medium">-5L</span>
+                            </div>
+                            <div class="flex items-start justify-between p-3 rounded-lg bg-green-50">
+                                <div class="flex items-start">
+                                    <div class="p-2 rounded-full bg-green-100 text-green-800 mr-3">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Sementes de Milho</p>
+                                        <p class="text-sm text-gray-500">Entrada de 100kg • 13/06/2023 11:00</p>
+                                    </div>
+                                </div>
+                                <span class="text-green-600 font-medium">+100kg</span>
+                            </div>
+                            <div class="flex items-start justify-between p-3 rounded-lg bg-green-50">
+                                <div class="flex items-start">
+                                    <div class="p-2 rounded-full bg-green-100 text-green-800 mr-3">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Fertilizante Orgânico</p>
+                                        <p class="text-sm text-gray-500">Entrada de 80kg • 12/06/2023 10:45</p>
+                                    </div>
+                                </div>
+                                <span class="text-green-600 font-medium">+80kg</span>
+                            </div>
+                            <div class="flex items-start justify-between p-3 rounded-lg bg-red-50">
+                                <div class="flex items-start">
+                                    <div class="p-2 rounded-full bg-red-100 text-red-800 mr-3">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Inseticida Natural</p>
+                                        <p class="text-sm text-gray-500">Saída de 10L • 11/06/2023 16:20</p>
+                                    </div>
+                                </div>
+                                <span class="text-red-600 font-medium">-10L</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inventory Alerts and Store Highlights -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Inventory Alerts -->
+                    <div class="bg-white rounded-xl shadow p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold text-gray-800">Alertas de Estoque</h2>
+                            <a href="#" class="text-green-600 hover:text-green-800 text-sm">Ver tudo</a>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex items-center justify-between p-3 rounded-lg bg-red-50 animate-pulse-slow">
+                                <div class="flex items-center">
+                                    <div class="p-2 rounded-full bg-red-100 text-red-800 mr-3">
+                                        <i class="fas fa-exclamation-triangle"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Herbicida Glifosato</p>
+                                        <p class="text-sm text-gray-500">Estoque crítico: 2 unidades</p>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                            <div class="flex items-center justify-between p-3 rounded-lg bg-orange-50">
+                                <div class="flex items-center">
+                                    <div class="p-2 rounded-full bg-orange-100 text-orange-800 mr-3">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-medium">Sementes de Soja</p>
+                                        <p class="text-sm text-gray-500">Estoque baixo: 15kg</p>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Store Highlights -->
+                    <div class="bg-white rounded-xl shadow p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h2 class="text-xl font-bold text-gray-800">Destaques da Loja</h2>
+                            <a href="#" class="text-green-600 hover:text-green-800 text-sm">Visitar Catálogo</a>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="border rounded-lg p-3 text-center hover:shadow-md transition">
+                                <div class="h-20 bg-cover bg-center rounded mb-2" style="background-image: url('https://casbri.com.br/wp-content/uploads/2020/09/ovos-de-codorna-1280x720-1-1.jpg');"></div>
+                                <p class="font-medium text-sm">Ovo de Codorna</p>
+                                <p class="text-green-600 font-bold">R$ 28,90/kg</p>
+                            </div>
+                            <div class="border rounded-lg p-3 text-center hover:shadow-md transition">
+                                <div class="h-20 bg-cover bg-center rounded mb-2" style="background-image: url('https://www.revistarural.com.br/sitenovo/wp-content/uploads/2022/05/frango10052022.jpg');"></div>
+                                <p class="font-medium text-sm">Frango</p>
+                                <p class="text-green-600 font-bold">R$ 35,00/500g</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        // Toggle sidebar on mobile
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Responsive sidebar behavior
+        function handleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const mainContent = document.querySelector('.flex-1');
+            
+            if (window.innerWidth < 768) {
+                sidebar.classList.add('-translate-x-full');
+                mainContent.classList.remove('ml-64', 'ml-20');
+                mainContent.classList.add('ml-0');
+            } else if (window.innerWidth < 1024) {
+                sidebar.classList.remove('-translate-x-full');
+                mainContent.classList.remove('ml-64', 'ml-0');
+                mainContent.classList.add('ml-20');
+            } else {
+                sidebar.classList.remove('-translate-x-full');
+                mainContent.classList.remove('ml-20', 'ml-0');
+                mainContent.classList.add('ml-64');
+            }
+        }
+
+        // Initialize and handle resize
+        window.addEventListener('load', handleSidebar);
+        window.addEventListener('resize', handleSidebar);
+
+        // Simulate loading data
+        setTimeout(() => {
+            const cards = document.querySelectorAll('.dashboard-card');
+            cards.forEach(card => {
+                card.classList.remove('opacity-0');
+            });
+        }, 300);
+    </script>
+</body>
+</html>
